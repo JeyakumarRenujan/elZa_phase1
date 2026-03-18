@@ -3,6 +3,7 @@ import * as React from "react"
 export default function ElzaDashboard() {
   const [state, setState] = React.useState<"idle" | "listening" | "thinking" | "responding" | "executing">("idle")
   const [input, setInput] = React.useState("")
+  const [currentTime, setCurrentTime] = React.useState("")
   const [messages, setMessages] = React.useState([
     { role: "assistant", text: "elZa online. How can I assist you today?" },
   ])
@@ -61,6 +62,23 @@ export default function ElzaDashboard() {
     }, 1200)
   }
 
+  React.useEffect(() => {
+    const updateTime = () => {
+        const now = new Date()
+        setCurrentTime(
+            now.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+            })
+        )
+    }
+
+    updateTime()
+    const interval = window.setInterval(updateTime, 1000)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
   function toggleTask(id: number) {
     setTasks((prev) => prev.map((task) => (task.id === id ? { ...task, done: !task.done } : task)))
     setState("executing")
@@ -90,6 +108,10 @@ export default function ElzaDashboard() {
           <div>
             <div className="text-xs uppercase tracking-[0.35em] text-cyan-300/70">Personal AI System</div>
             <div className="mt-1 text-2xl font-semibold tracking-wide">elZa</div>
+          </div>
+
+          <div className="rounded-full border border-cyan-300/10 bg-white/5 px-3 py-1 text-slate-300">
+            {currentTime}
           </div>
 
           <div className="flex items-center gap-3 text-sm text-slate-300">
