@@ -150,7 +150,7 @@ export default function ElzaDashboard() {
           <section className="relative overflow-hidden rounded-[36px] border border-cyan-300/10 bg-white/5 p-6 backdrop-blur-2xl shadow-[0_0_50px_rgba(34,211,238,0.08)]">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.10),transparent_42%)]" />
 
-            <div className="relative flex h-full min-h-[620px] flex-col">
+            <div className="relative flex h-full min-h-[560px] flex-col">
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <div className="text-xs uppercase tracking-[0.32em] text-cyan-300/70">Core Interface</div>
@@ -161,7 +161,7 @@ export default function ElzaDashboard() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col items-center justify-center">
+              <div className="flex flex-1 flex-col items-center justify-center py-4">
                 <div className="relative flex h-[360px] w-[360px] items-center justify-center">
                   <div
                     className={`absolute rounded-full border border-cyan-300/25 ${
@@ -237,7 +237,7 @@ export default function ElzaDashboard() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-[28px] border border-white/10 bg-slate-950/30 p-4">
+              <div className="mt-2 rounded-[28px] border border-white/10 bg-slate-950/40 p-4">
                 <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.28em] text-slate-400">
                   <span>Conversation</span>
                   <div className="flex items-center gap-2">
@@ -298,9 +298,9 @@ export default function ElzaDashboard() {
           </section>
         </main>
 
-        <footer className="mt-6 rounded-[30px] border border-white/10 bg-white/5 p-4 backdrop-blur-xl shadow-[0_0_30px_rgba(34,211,238,0.05)]">
+        <footer className="mt-4 rounded-[30px] border border-cyan-300/10 bg-white/5 p-4 backdrop-blur-xl shadow-[0_0_30px_rgba(34,211,238,0.08)]">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-            <div className="flex-1 rounded-2xl border border-white/10 bg-slate-950/30 px-4 py-3">
+            <div className="flex-1 rounded-2xl border border-cyan-300/15 bg-slate-950/40 px-4 py-3 shadow-[0_0_18px_rgba(34,211,238,0.06)]">
               <div className="flex items-center gap-3">
                 <Command className="h-4 w-4 text-cyan-300" />
                 <input
@@ -319,7 +319,7 @@ export default function ElzaDashboard() {
               <button
                 ref={micButtonRef}
                 onClick={simulateVoice}
-                className="group relative inline-flex h-14 w-14 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-400/10 text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-400/15"
+                className="group relative inline-flex h-14 w-14 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-400/12 text-cyan-100 shadow-[0_0_22px_rgba(34,211,238,0.10)] transition hover:scale-105 hover:border-cyan-300/45 hover:bg-cyan-400/18"
                 aria-label="Activate voice mode"
               >
                 <span className="absolute inset-0 rounded-full bg-cyan-300/10 blur-md transition group-hover:bg-cyan-300/20" />
@@ -328,7 +328,7 @@ export default function ElzaDashboard() {
 
               <button
                 onClick={handleSend}
-                className="inline-flex h-14 items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-5 text-sm font-medium text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15"
+                className="inline-flex h-14 items-center gap-2 rounded-full border border-cyan-300/25 bg-cyan-400/12 px-5 text-sm font-medium text-cyan-50 shadow-[0_0_22px_rgba(34,211,238,0.08)] transition hover:scale-[1.02] hover:border-cyan-300/45 hover:bg-cyan-400/18"
               >
                 Send
                 <ArrowUpRight className="h-4 w-4" />
