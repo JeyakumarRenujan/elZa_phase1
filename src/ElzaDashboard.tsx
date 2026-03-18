@@ -98,7 +98,7 @@ export default function ElzaDashboard() {
       let reply = "I'm ready. What would you like to work on today?"
 
       if (/hello|hi|hey/.test(lowerText)) {
-        reply = "Hello. I am elZa, your personal AI system."
+        reply = "Hello. I am elZa, your personal AI Assistant."
       } else if (/add task:?/i.test(text)) {
         const newTaskTitle = text.replace(/add task:?/i, "").trim() || "New task"
 
