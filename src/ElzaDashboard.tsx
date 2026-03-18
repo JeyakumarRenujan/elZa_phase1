@@ -8,9 +8,9 @@ export default function ElzaDashboard() {
     { role: "assistant", text: "elZa online. How can I assist you today?" },
   ])
   const [tasks, setTasks] = React.useState([
-    { id: 1, title: "Finish UI direction", done: true },
-    { id: 2, title: "Prepare mentor demo", done: false },
-    { id: 3, title: "Add AI core states", done: false },
+    { id: 1, title: "Schedule workout session", done: true },
+    { id: 2, title: "Reply to important emails", done: false },
+    { id: 3, title: "Plan weekend activities", done: false },
   ])
 
   const micButtonRef = React.useRef<HTMLButtonElement | null>(null)
@@ -39,7 +39,7 @@ export default function ElzaDashboard() {
     setState("thinking")
 
     window.setTimeout(() => {
-      let reply = "I understood the command. This response is part of the investor demo flow."
+      let reply = "I'm ready. What would you like to work on today?"
 
       if (/task|add/i.test(text)) {
         setTasks((prev) => [
@@ -299,8 +299,9 @@ export default function ElzaDashboard() {
             <div className="space-y-3">
               {[
                 "You usually work better at night.",
-                "Your mentor review is due within 2 days.",
-                "Task-focused layout is best for your demo.",
+                "You tend to be most productive in the morning.",
+                "You have a meeting scheduled at 3:00 PM.",
+                "You haven't completed your workout goal this week.",
               ].map((item) => (
                 <div key={item} className="rounded-2xl border border-white/8 bg-white/5 p-4 text-sm text-slate-300">
                   {item}
@@ -314,7 +315,7 @@ export default function ElzaDashboard() {
                 Suggested next step
               </div>
               <p className="mt-2 text-sm leading-6 text-slate-300">
-                Build the dashboard first, then demo one believable interaction: voice trigger, task creation, and AI state transitions.
+                You have free time this afternoon. Consider scheduling your workout or reviewing today's priorities.
               </p>
             </div>
           </section>
@@ -358,6 +359,23 @@ export default function ElzaDashboard() {
             </div>
           </div>
         </footer>
+        
+        <div className="mt-10 text-center px-6 pb-10">
+            <h1 className="text-4xl font-bold tracking-wide text-cyan-200 drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]">
+                elZa
+            </h1>
+
+            <p className="mt-3 text-lg text-cyan-300/80">
+                The AI that helps you think, plan, and act.
+            </p>
+
+            <p className="mt-4 text-sm text-slate-400 max-w-2xl mx-auto leading-6">
+                Manages your tasks, tracks your habits, and provides intelligent insights
+                to improve your daily life. A personal AI system designed to understand
+                you and support your decisions.
+            </p>
+        </div>
+
       </div>
     </div>
   )
