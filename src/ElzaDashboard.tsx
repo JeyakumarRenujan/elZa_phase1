@@ -17,6 +17,8 @@ export default function ElzaDashboard() {
   const [state, setState] = React.useState<ElzaState>("idle")
   const [input, setInput] = React.useState("")
   const [currentTime, setCurrentTime] = React.useState("")
+  const [editingTaskId, setEditingTaskId] = React.useState<number | null>(null)
+  const [editingValue, setEditingValue] = React.useState("")
   const [messages, setMessages] = React.useState<Message[]>([
     { role: "assistant", text: "I'm ready. What would you like to work on today?" },
   ])
@@ -141,12 +143,48 @@ export default function ElzaDashboard() {
   }
 
   function addQuickTask() {
+    const newId = Date.now()
+
     setTasks((prev) => [
       ...prev,
-      { id: Date.now(), title: "New task", done: false },
+      { id: newId, title: "New task", done: false },
     ])
+
+    setEditingTaskId(newId)
+    setEditingValue("New task")
+
     setState("executing")
     window.setTimeout(() => setState("idle"), 900)
+  }
+
+  function startEditingTask(task: Task) {
+    setEditingTaskId(task.id)
+    setEditingValue(task.title)
+  }
+
+  function saveEditingTask() {
+    if (editingTaskId === null) return
+
+    const trimmedValue = editingValue.trim()
+
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === editingTaskId
+          ? { ...task, title: trimmedValue || "New task" }
+          : task
+      )
+    )
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        text: `Done. I updated the task to "${trimmedValue || "New task"}".`,
+      },
+    ])
+
+    setEditingTaskId(null)
+    setEditingValue("")
   }
 
   const stateLabel = {
@@ -208,13 +246,14 @@ export default function ElzaDashboard() {
 
             <div className="space-y-3">
               {tasks.map((task) => (
-                <button
+                <div
                   key={task.id}
-                  onClick={() => toggleTask(task.id)}
                   className="group flex w-full items-center justify-between rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-left transition hover:border-cyan-300/20 hover:bg-white/10"
                 >
-                  <div className="flex items-center gap-3">
-                    <span
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => toggleTask(task.id)}
                       className={`flex h-5 w-5 items-center justify-center rounded-full border text-[10px] ${
                         task.done
                           ? "border-emerald-300/30 bg-emerald-300/15 text-emerald-300"
@@ -222,17 +261,38 @@ export default function ElzaDashboard() {
                       }`}
                     >
                       {task.done ? <Check className="h-3 w-3" /> : null}
-                    </span>
-                    <span
-                      className={`text-sm ${
-                        task.done ? "text-slate-400 line-through" : "text-slate-200"
-                      }`}
-                    >
-                      {task.title}
-                    </span>
+                    </button>
+
+                    {editingTaskId === task.id ? (
+                      <input
+                        value={editingValue}
+                        onChange={(e) => setEditingValue(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") saveEditingTask()
+                        }}
+                        onBlur={saveEditingTask}
+                        autoFocus
+                        className="w-full bg-transparent text-sm text-slate-100 outline-none"
+                      />
+                    ) : (
+                      <span
+                        className={`truncate text-sm ${
+                          task.done ? "text-slate-400 line-through" : "text-slate-200"
+                        }`}
+                      >
+                        {task.title}
+                      </span>
+                    )}
                   </div>
-                  <ChevronRight className="h-4 w-4 text-slate-500 transition group-hover:text-cyan-200" />
-                </button>
+
+                  <button
+                    type="button"
+                    onClick={() => startEditingTask(task)}
+                    className="ml-3 rounded-full p-1 text-slate-500 transition hover:text-cyan-200"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
               ))}
             </div>
 
