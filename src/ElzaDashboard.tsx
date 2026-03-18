@@ -209,7 +209,7 @@ export default function ElzaDashboard() {
         <header className="mb-6 flex items-center justify-between rounded-3xl border border-cyan-400/10 bg-white/5 px-5 py-4 backdrop-blur-xl shadow-[0_0_30px_rgba(34,211,238,0.08)]">
           <div>
             <div className="text-xs uppercase tracking-[0.35em] text-cyan-300/70">
-              Personal AI System
+              Personal AI Assistant
             </div>
             <div className="mt-1 text-2xl font-semibold tracking-wide">elZa</div>
           </div>
@@ -521,7 +521,7 @@ export default function ElzaDashboard() {
 
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-400">
             Manages your tasks, tracks your habits, and provides intelligent insights
-            to improve your daily life. A personal AI system designed to understand
+            to improve your daily life. A personal AI Assistant designed to understand
             you and support your decisions.
           </p>
         </div>
