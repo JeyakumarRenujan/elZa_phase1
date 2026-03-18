@@ -166,17 +166,19 @@ export default function ElzaDashboard() {
                   <div
                     className={`absolute rounded-full border border-cyan-300/25 ${
                       state === "responding"
-                        ? "h-[356px] w-[356px] animate-ping"
+                        ? "h-[356px] w-[356px] border-cyan-200/40 shadow-[0_0_35px_rgba(34,211,238,0.22)] animate-ping"
                         : state === "executing"
-                        ? "h-[350px] w-[350px] animate-spin"
-                        : "h-[340px] w-[340px]"
+                        ? "h-[350px] w-[350px] border-emerald-300/35 shadow-[0_0_30px_rgba(110,231,183,0.18)] animate-spin"
+                        : "h-[340px] w-[340px] border-cyan-300/25"
                     } opacity-60`}
                     style={{ animationDuration: state === "executing" ? "3.5s" : "2.2s" }}
                   />
 
                   <div
                     className={`absolute rounded-full border border-cyan-200/15 ${
-                      state === "thinking" ? "h-[300px] w-[300px] animate-spin" : "h-[290px] w-[290px]"
+                      state === "thinking" 
+                        ? "h-[300px] w-[300px] border-sky-200/25 shadow-[0_0_24px_rgba(125,211,252,0.12)] animate-spin"
+                        : "h-[290px] w-[290px] border-cyan-200/15"
                     }`}
                     style={{ animationDuration: "6s" }}
                   />
@@ -186,14 +188,14 @@ export default function ElzaDashboard() {
                       state === "idle"
                         ? "h-44 w-44 bg-cyan-400/20 animate-pulse"
                         : state === "listening"
-                        ? "h-56 w-56 bg-cyan-300/30 animate-pulse"
-                        : state === "thinking"
-                        ? "h-52 w-52 bg-sky-300/25 animate-pulse"
-                        : state === "responding"
                         ? "h-60 w-60 bg-cyan-300/35 animate-pulse"
-                        : "h-52 w-52 bg-emerald-300/20 animate-pulse"
+                        : state === "thinking"
+                        ? "h-56 w-56 bg-sky-300/25 animate-pulse"
+                        : state === "responding"
+                        ? "h-64 w-64 bg-cyan-300/40 animate-pulse"
+                        : "h-58 w-58 bg-emerald-300/25 animate-pulse"
                     }`}
-                    style={{ animationDuration: state === "idle" ? "3.2s" : "1.4s" }}
+                    style={{ animationDuration: state === "idle" ? "3.2s" : "1.2s" }}
                   />
 
                   <div
@@ -212,6 +214,7 @@ export default function ElzaDashboard() {
                       <source src="/elza-core.mp4" type="video/mp4" />
                     </video>
                     <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(2,6,23,0.22)_100%)]" />
+        
                   </div>
 
                   {state === "listening" ? (
